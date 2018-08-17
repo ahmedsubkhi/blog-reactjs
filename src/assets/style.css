@@ -1,0 +1,35 @@
+html, body {
+   height: 100%;
+}
+
+body {
+  margin:0;
+  padding:0;
+  background-color: #0c0c0fe6;
+  color: #fff;
+}
+
+/* Blog header */
+.header-blog {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.header-blog .nav {
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.04);
+}
+.header-blog .nav-link {
+  color: #fff;
+}
+
+/* Blog post */
+.container-post-blog {
+  margin-bottom: 30px;
+}
+.container-post-blog:not(:first-child) {
+  padding-top: 30px;
+  border-top: 2px solid rgba(255, 255, 255, 0.04);
+}
+.body-post-blog {
+  margin-top: 5px;
+}
