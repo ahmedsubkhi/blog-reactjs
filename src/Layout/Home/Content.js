@@ -2,33 +2,36 @@ import React, { Component } from 'react';
 
 
 class Content extends Component {
+
+  constructor(props){
+    super(props);
+    console.log(this.props.data_posts);
+  }
+
   state = {
-    post_content: ''
+    post_content: null
   }
 
   componentDidMount() {
-    this.callApi()
-      .then(res =>
-        this.setState({ post_content: this.renderPosts(res) })
-      )
-      .catch(err => console.log(err));
-  }
-
-  callApi = async () => {
-    const response = await fetch('/posts');
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
+    console.log(this.props.data_posts);
+    if(this.props.data_posts == null){
+      this.setState({
+        post_content: "Loading..."
+      })
+    } else {
+      const d_post = this.props.data_posts;
+      this.setState({
+        post_content: this.renderPosts(d_post)
+      });
+    }
   }
 
   renderPosts = (res) => {
     const posts = res.map((post) =>
-      <div class="container container-post-blog">
-        <h5 class="title-post-blog"><strong><a href={'/posts/'+post.id_post}>{post.title}</a></strong></h5>
-        <small class="user-post-blog">Posted by: {post.user.username}</small>
-        <div class="body-post-blog">
+      <div className="container container-post-blog">
+        <h5 className="title-post-blog"><strong><a href={'/posts/'+post.id_post}>{post.title}</a></strong></h5>
+        <small className="user-post-blog">Posted by: {post.user.username}</small>
+        <div className="body-post-blog">
           {post.body}
         </div>
       </div>

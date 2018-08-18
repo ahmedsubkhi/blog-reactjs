@@ -33,3 +33,14 @@ body {
 .body-post-blog {
   margin-top: 5px;
 }
+
+/* Nav right */
+.container-item-nav-right-blog {
+  line-height: 1;
+}
+
+.container-item-nav-right-blog:not(:first-child) {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+

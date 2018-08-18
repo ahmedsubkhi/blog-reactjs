@@ -6,18 +6,18 @@ class Header extends Component {
   render(){
     return (
       <div className="header-blog">
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
+        <ul className="nav justify-content-center flex-column flex-sm-row">
+          <li className="nav-item text-center">
+            <a className="nav-link active" href="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/article">Article</a>
+          <li className="nav-item text-center">
+            <a className="nav-link" href="/article">Article</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+          <li className="nav-item text-center">
+            <a className="nav-link" href="/contact">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/aboutme">About Me</a>
+          <li className="nav-item text-center">
+            <a className="nav-link" href="/aboutme">About Me</a>
           </li>
         </ul>
       </div>
