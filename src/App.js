@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-//import jquery from 'jquery';
+import 'jquery';
 import 'bootstrap';
 
 import './assets/style.css';
@@ -16,7 +17,16 @@ class App extends Component {
     return (
       <div className="App">
         <header className="app-header">
-          <Homelayout />
+          <BrowserRouter>
+            <Homelayout />
+          </BrowserRouter>
+          {/*
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route path='/roster' component={Roster}/>
+            <Route path='/schedule' component={Schedule}/>
+          </Switch>
+          */}
         </header>
       </div>
     );

@@ -5,7 +5,7 @@ class Navright extends Component {
 
   constructor(props){
     super(props);
-    console.log(this.props.data_posts);
+    //console.log(this.props.data_posts);
   }
 
   state = {
@@ -13,7 +13,7 @@ class Navright extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.data_posts);
+    //console.log(this.props.data_posts);
     if(this.props.data_posts == null){
       this.setState({
         post_content: "Loading..."
@@ -27,8 +27,8 @@ class Navright extends Component {
   }
 
   renderItems = (res) => {
-    const posts = res.map((post) =>
-      <div className="container-item-nav-right-blog">
+    const posts = res.map((post, i) =>
+      <div className="container-item-nav-right-blog" key={i}>
         <div className="title-item-nav-right-blog">
           <a href={'/posts/'+post.id_post}>{post.title}</a><br />
           <small className="user-item-nav-right-blog">Posted by: {post.user.username}</small>

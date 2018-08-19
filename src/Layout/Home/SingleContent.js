@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 
 
-class Content extends Component {
+class SingleContent extends Component {
 
   constructor(props){
     super(props);
-    //console.log(this.props.data_posts);
-  }
+    console.log(this.props);
 
-  state = {
-    post_content: null
+    this.state = {
+      post_content: null,
+      //id_posted:props.match.params.number
+    }
   }
 
   componentDidMount() {
@@ -20,15 +21,18 @@ class Content extends Component {
       })
     } else {
       const d_post = this.props.data_posts;
+      var post_index = d_post.findIndex(p => p.id_post == this.props.match.params.number);
+      var post = d_post[post_index];
+
       this.setState({
-        post_content: this.renderPosts(d_post)
+        post_content: this.renderPosts(post)
       });
     }
   }
 
-  renderPosts = (res) => {
-    const posts = res.map((post, i) =>
-      <div className="container-post-blog" key={i}>
+  renderPosts = (post) => {
+    const posts = (
+      <div className="container-post-blog">
         <div className="container">
           <h5 className="title-post-blog"><strong><a href={'/posts/'+post.id_post}>{post.title}</a></strong></h5>
           <small className="user-post-blog">Posted by: {post.user.username}</small>
@@ -54,4 +58,4 @@ class Content extends Component {
   }
 }
 
-export default Content;
+export default SingleContent;
