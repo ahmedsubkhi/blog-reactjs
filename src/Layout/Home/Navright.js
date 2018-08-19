@@ -5,7 +5,7 @@ class Navright extends Component {
 
   constructor(props){
     super(props);
-    //console.log(this.props.data_posts);
+    console.log(this.props);
   }
 
   state = {
@@ -48,7 +48,7 @@ class Navright extends Component {
         <div className="row nav-right-group-blog">
           <div className="col-sm-12 col-md-12 col-lg-12 col-nav-right-group-blog">
             <div className="container">
-              <h5>Latest</h5>
+              <h5>Latest Post</h5>
               {this.state.post_content}
             </div>
           </div>

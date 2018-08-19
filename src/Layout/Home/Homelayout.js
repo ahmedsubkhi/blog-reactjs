@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Content from './Content';
+import Contact from './Contact';
+import AboutMe from './AboutMe';
 import SingleContent from './SingleContent';
 import Navright from './Navright';
 
@@ -56,8 +58,10 @@ class Homelayout extends Component {
             <div className="col-sm-9 col-md-9 col-lg-9">
               {/* Contains content of article or news */}
               <Switch>
-                <Route exact path='/' render={() => <Content data_posts={data_posts} />} />
-                <Route path='/posts/:number' render={(props) => <SingleContent {...props} data_posts={data_posts} />} />
+                <Route exact path="/" render={() => <Content data_posts={data_posts} />} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/aboutme" component={AboutMe} />
+                <Route path="/posts/:number" render={(props) => <SingleContent {...props} data_posts={data_posts} />} />
                 <Route render={() => { return ( <h3>Not Found</h3> ); } } />
               </Switch>
             </div>

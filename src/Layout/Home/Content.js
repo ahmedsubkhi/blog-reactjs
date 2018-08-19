@@ -5,7 +5,7 @@ class Content extends Component {
 
   constructor(props){
     super(props);
-    //console.log(this.props.data_posts);
+    console.log(this.props);
   }
 
   state = {
