@@ -11,6 +11,11 @@ import Navright from './Navright';
 
 class Homelayout extends Component {
 
+  constructor(){
+    super();
+    this.API_URL = process.env.REACT_APP_API_URL;
+  }
+
   state = {
     data_posts: null
   }
@@ -25,7 +30,7 @@ class Homelayout extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/posts');
+    const response = await fetch(this.API_URL + '/posts');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
