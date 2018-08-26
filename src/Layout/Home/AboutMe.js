@@ -16,7 +16,7 @@ class AboutMe extends Component {
                 My first programming language I learn is PHP. I have learned Object Oriented Programming, framework like CodeIgniter and Laravel.
                 </p>
                 <p>
-                Now more focused on JavaScript programming language. Especially at Node JS as backend and React JS as frontend service.
+                Now more focused on JavaScript programming language. Especially at React JS as frontend and Node JS as backend service.
                 This blog stack I use is MongoDB, Express JS, React JS, and Node JS.
                 </p>
               </div>

@@ -5,8 +5,8 @@ html, body {
 body {
   margin:0;
   padding:0;
-  /*background-color: #0c0c0fe6;*/
-  /*color: #fff;*/
+  background-color: #0c0c0fe6;
+  color: #fff;
 }
 
 /* Blog header */
@@ -19,7 +19,7 @@ body {
   border-bottom: 2px solid rgba(255, 255, 255, 0.04);
 }
 .header-blog .nav-link {
-  color: #000;
+  color: #fff;
 }
 
 /* Blog post */

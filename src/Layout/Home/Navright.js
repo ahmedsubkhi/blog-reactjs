@@ -45,6 +45,7 @@ class Navright extends Component {
   render(){
     return (
       <div className="navright-blog">
+        <div className="clearfix">&nbsp;</div>
         <div className="row nav-right-group-blog">
           <div className="col-sm-12 col-md-12 col-lg-12 col-nav-right-group-blog">
             <div className="container">
@@ -55,7 +56,6 @@ class Navright extends Component {
         </div>
         <div className="clearfix">&nbsp;</div>
         <div className="clearfix">&nbsp;</div>
-        <div className="clearfix">&nbsp;</div>
         <div className="row nav-right-group-blog">
           <div className="col-sm-12 col-md-12 col-lg-12 col-nav-right-group-blog">
             <div className="container">
@@ -64,6 +64,7 @@ class Navright extends Component {
             </div>
           </div>
         </div>
+        <div className="clearfix">&nbsp;</div>
       </div>
     );
   }
