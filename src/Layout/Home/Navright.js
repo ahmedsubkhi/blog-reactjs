@@ -1,72 +1,68 @@
 import React, { Component } from 'react';
 
+import LatestPosts from './Navright/LatestPosts';
+import Postyear from './Navright/Postyear';
+import Loading from './Loading';
 
 class Navright extends Component {
 
   constructor(props){
     super(props);
-    console.log(this.props);
-  }
-
-  state = {
-    post_content: null
-  }
-
-  componentDidMount() {
-    //console.log(this.props.data_posts);
-    if(this.props.data_posts == null){
-      this.setState({
-        post_content: "Loading..."
-      })
-    } else {
-      const d_post = this.props.data_posts;
-      this.setState({
-        post_content: this.renderItems(d_post)
-      });
+    this.API_URL = process.env.REACT_APP_API_URL;
+    this.state = {
+      posts: [],
+      ready: false
     }
   }
 
-  renderItems = (res) => {
-    const posts = res.map((post, i) =>
-      <div className="container-item-nav-right-blog" key={i}>
-        <div className="title-item-nav-right-blog">
-          <a href={'/posts/'+post.id_post}>{post.title}</a><br />
-          <small className="user-item-nav-right-blog">Posted by: {post.user.username}</small>
-        </div>
-      </div>
-    );
-    return (
-      <div className="post-blog">
-        {posts}
-      </div>
-    );
+  componentDidMount() {
+    this.getApiPosts()
+    .then((res) => {
+        this.setState({
+          posts: res,
+          ready: true
+        });
+      }
+    )
+    .catch(err => console.log(err));
+  }
+
+  getApiPosts = async () => {
+    const response = await fetch(this.API_URL + '/posts/latest');
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
   }
 
   render(){
-    return (
-      <div className="navright-blog">
-        <div className="clearfix">&nbsp;</div>
-        <div className="row nav-right-group-blog">
-          <div className="col-sm-12 col-md-12 col-lg-12 col-nav-right-group-blog">
-            <div className="container">
-              <h5>Latest Post</h5>
-              {this.state.post_content}
+    if(this.state.ready){
+      const postsData = this.state.posts;
+
+      return (
+        <div className="navright-blog">
+          <div className="clearfix">&nbsp;</div>
+          <div className="row nav-right-group-blog">
+            <div className="col-sm-12 col-md-12 col-lg-12 col-nav-right-group-blog">
+              <div className="container">
+                <h5>Latest Posts</h5>
+                <LatestPosts posts={postsData} />
+              </div>
             </div>
           </div>
+          <div className="clearfix">&nbsp;</div>
+          <div className="clearfix">&nbsp;</div>
+          {/* Post in all year */}
+          <Postyear />
+          <div className="clearfix">&nbsp;</div>
         </div>
-        <div className="clearfix">&nbsp;</div>
-        <div className="clearfix">&nbsp;</div>
-        <div className="row nav-right-group-blog">
-          <div className="col-sm-12 col-md-12 col-lg-12 col-nav-right-group-blog">
-            <div className="container">
-              <h5>Post by Date</h5>
-              {this.state.post_content}
-            </div>
-          </div>
-        </div>
-        <div className="clearfix">&nbsp;</div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <Loading />
+      );
+    }
   }
 }
 

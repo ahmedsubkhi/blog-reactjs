@@ -1,5 +1,5 @@
 html, body {
-   height: 100%;
+  height: 100%;
 }
 
 body {
@@ -11,8 +11,8 @@ body {
 
 /* Blog header */
 .header-blog {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .header-blog .nav {
   padding-bottom: 20px;
@@ -36,14 +36,15 @@ body {
 
 /* Nav right */
 .col-nav-right-group-blog h5 {
-    text-decoration: underline;
-    font-weight: bold;
+  text-decoration: underline;
+  font-weight: bold;
 }
 .container-item-nav-right-blog {
   line-height: 1;
 }
-
 .container-item-nav-right-blog:not(:first-child) {
   padding-top: 20px;
 }
-
+.col-nav-right-group-blog .anchor-month {
+  padding-left: 20px;
+}

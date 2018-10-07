@@ -1,60 +1,72 @@
 import React, { Component } from 'react';
 
+import Post from './Content/Post';
+import Loading from './Loading';
+
 
 class SingleContent extends Component {
 
   constructor(props){
     super(props);
-    console.log(this.props);
-
+    this.API_URL = process.env.REACT_APP_API_URL;
     this.state = {
-      post_content: null,
-      //id_posted:props.match.params.number
+      posts: [],
+      ready: false,
+      notfound: false
     }
   }
 
   componentDidMount() {
-    //console.log(this.props.data_posts);
-    if(this.props.data_posts == null){
-      this.setState({
-        post_content: "Loading..."
-      })
-    } else {
-      const d_post = this.props.data_posts;
-      var post_index = d_post.findIndex(p => p.id_post == this.props.match.params.number);
-      var post = d_post[post_index];
 
-      this.setState({
-        post_content: this.renderPosts(post)
-      });
-    }
+    this.getApiPosts()
+    .then((res) => {
+        console.log(res);
+        if(res){
+          this.setState({
+            posts: res,
+            ready: true
+          });
+        } else {
+          this.setState({
+            notfound: true
+          });
+        }
+      }
+    )
+    .catch(err => console.log(err));
+
   }
 
-  renderPosts = (post) => {
-    const posts = (
-      <div className="container-post-blog">
-        <div className="container">
-          <h5 className="title-post-blog"><strong><a href={'/posts/'+post.id_post}>{post.title}</a></strong></h5>
-          <small className="user-post-blog">Posted by: {post.user.username}</small>
-          <div className="body-post-blog">
-            {post.body}
-          </div>
-        </div>
-      </div>
-    );
-    return (
-      <div className="post-blog">
-        {posts}
-      </div>
-    );
+  getApiPosts = async () => {
+    const id_post = this.props.match.params.number;
+    const response = await fetch(this.API_URL + '/posts/' + id_post);
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
   }
 
   render(){
-    return (
-      <div className="content-blog">
-        <span>{this.state.post_content}</span>
-      </div>
-    );
+    if(this.state.ready){
+      const postsData = this.state.posts;
+
+      return (
+        <div className="content-blog">
+          <Post posts={postsData} />
+        </div>
+      );
+    } else {
+      if(this.state.notfound){
+        return (
+          <h3>Not Found</h3>
+        );
+      } else {
+        return (
+          <Loading />
+        );
+      }
+    }
   }
 }
 

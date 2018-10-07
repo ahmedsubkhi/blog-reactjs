@@ -20,13 +20,6 @@ class App extends Component {
           <BrowserRouter>
             <Homelayout />
           </BrowserRouter>
-          {/*
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/roster' component={Roster}/>
-            <Route path='/schedule' component={Schedule}/>
-          </Switch>
-          */}
         </header>
       </div>
     );

@@ -1,56 +1,54 @@
 import React, { Component } from 'react';
 
+import Posts from './Content/Posts';
+import Loading from './Loading';
 
 class Content extends Component {
 
-  constructor(props){
-    super(props);
-    console.log(this.props);
-  }
-
-  state = {
-    post_content: null
-  }
-
-  componentDidMount() {
-    //console.log(this.props.data_posts);
-    if(this.props.data_posts == null){
-      this.setState({
-        post_content: "Loading..."
-      })
-    } else {
-      const d_post = this.props.data_posts;
-      this.setState({
-        post_content: this.renderPosts(d_post)
-      });
+  constructor(){
+    super();
+    this.API_URL = process.env.REACT_APP_API_URL;
+    this.state = {
+      posts: [],
+      ready: false
     }
   }
 
-  renderPosts = (res) => {
-    const posts = res.map((post, i) =>
-      <div className="container-post-blog" key={i}>
-        <div className="container">
-          <h5 className="title-post-blog"><strong><a href={'/posts/'+post.id_post}>{post.title}</a></strong></h5>
-          <small className="user-post-blog">Posted by: {post.user.username}</small>
-          <div className="body-post-blog">
-            {post.body}
-          </div>
-        </div>
-      </div>
-    );
-    return (
-      <div className="post-blog">
-        {posts}
-      </div>
-    );
+  componentDidMount() {
+    this.getApiPosts()
+    .then((res) => {
+        this.setState({
+          posts: res,
+          ready: true
+        });
+      }
+    )
+    .catch(err => console.log(err));
+  }
+
+  getApiPosts = async () => {
+    const response = await fetch(this.API_URL + '/posts');
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
   }
 
   render(){
-    return (
-      <div className="content-blog">
-        <span>{this.state.post_content}</span>
-      </div>
-    );
+    if(this.state.ready){
+      const postsData = this.state.posts;
+
+      return (
+        <div className="content-blog">
+          <Posts posts={postsData} />
+        </div>
+      );
+    } else {
+      return (
+        <Loading />
+      );
+    }
   }
 }
 
