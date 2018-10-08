@@ -5,9 +5,10 @@ html, body {
 body {
   margin:0;
   padding:0;
-  /*background-color: #0c0c0fe6;*/
-  /*color: #fff;*/
 }
+
+
+/* Begin: Homelayout >>> */
 
 /* Blog header */
 .header-blog {
@@ -48,3 +49,16 @@ body {
 .col-nav-right-group-blog .anchor-month {
   padding-left: 20px;
 }
+
+/* End: Homelayout <<< */
+
+
+/* Begin: Loginlayout >>> */
+
+/* Form Login */
+.form-login {
+  padding: 55px 0;
+}
+
+/* End: Loginlayout <<< */
+

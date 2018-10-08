@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,6 +9,8 @@ import 'bootstrap';
 import './assets/style.css';
 
 import Homelayout from './Layout/Home/Homelayout';
+import Loginlayout from './Layout/Login/Loginlayout';
+import Logout from './Page/Logout';
 
 
 class App extends Component {
@@ -18,7 +20,11 @@ class App extends Component {
       <div className="App">
         <header className="app-header">
           <BrowserRouter>
-            <Homelayout />
+            <Switch>
+              <Route path="/login" component={Loginlayout} />
+              <Route path="/logout" component={Logout} />
+              <Route component={Homelayout} />
+            </Switch>
           </BrowserRouter>
         </header>
       </div>

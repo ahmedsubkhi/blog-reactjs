@@ -14,7 +14,7 @@ class PostByMonth extends Component {
       const posts = res.map((post, n) =>
         post.map((data, p) =>
           <div className="anchor-month" key={p}>
-            <a href={'/posts/' + data.id_post}>{data.title}</a>
+            <a href={'/posts/' + data.id_post}><b className="fa fa-caret-right"></b> {data.title}</a>
           </div>
         )
       );

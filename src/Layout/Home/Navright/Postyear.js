@@ -72,7 +72,7 @@ class Postyear extends Component {
     const years = res.map((datayear, y) =>
       <div className="container-item nav-right-blog post-year" key={y}>
         <div className="title-item">
-          <a href="javascript:void(0);" onClick={() => this.getPostByMonth(datayear, y)}><b className="fa fa-caret-right"></b> {this.months[datayear._id.month - 1]} {datayear._id.year}</a><br />
+          <a href="javascript:void(0);" onClick={() => this.getPostByMonth(datayear, y)}><b className="fa fa-chevron-circle-right"></b> {this.months[datayear._id.month - 1]} {datayear._id.year}</a><br />
         </div>
         <div className="content-item-post-year">
           <PostByMonth posts={this.state.postByMonth[y]} key={y} />
