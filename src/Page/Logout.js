@@ -15,7 +15,12 @@ class Login extends Component {
 
   render(){
     return (
-      <h2>Loading...</h2>
+      <h1 className="text-center">
+        <br />
+        <br />
+        <i className="fa fa-spinner fa-spin"></i>
+        <br />Loading...
+      </h1>
     );
   }
 }

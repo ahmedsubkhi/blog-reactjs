@@ -23,7 +23,6 @@ class Header extends Component {
     if(this.currentAuth){
       this.getApiMyaccount()
       .then((res) => {
-          console.log(res);
           this.setState({
             myAccount: res,
             ready: true

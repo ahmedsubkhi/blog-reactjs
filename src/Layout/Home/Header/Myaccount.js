@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Loading from '../Loading';
-
 
 class Myaccount extends Component {
 

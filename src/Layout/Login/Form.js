@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
 
 class Form extends Component {
 
@@ -9,7 +8,8 @@ class Form extends Component {
     this.CONFIG_SESSION_NAME = process.env.REACT_APP_CONFIG_SESSION_NAME;
     this.state = {
       posts: [],
-      ready: false
+      ready: false,
+      message: ""
     }
   }
 
@@ -20,7 +20,7 @@ class Form extends Component {
     });
     const result = await response.json();
 
-    if (response.status !== 200) throw Error(result.message);
+    if (response.status !== 200) throw result.message;
 
     return result;
   }
@@ -28,16 +28,19 @@ class Form extends Component {
   doLogin(e){
     e.preventDefault();
 
+    this.setState({ message: <h4><i className="fa fa-spin fa-spinner"></i></h4> });
+
     const data = new FormData(e.target);
 
     this.getApiAuthLogin(data)
     .then((res) => {
-        console.log(res);
         localStorage.setItem(this.CONFIG_SESSION_NAME, JSON.stringify(res));
         window.location.href = "/";
       }
     )
-    .catch(err => console.log(err));
+    .catch(err =>
+      this.setState({ message: err })
+    );
   }
 
   render(){
@@ -60,6 +63,11 @@ class Form extends Component {
             <div className="form-group">
               <div className="col-md-12">
                 <button className="btn btn-primary" type="submit"><i className="fa fa-sign-in"></i> Login</button>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-md-12">
+                <div className="text-danger">{this.state.message}</div>
               </div>
             </div>
           </div>
