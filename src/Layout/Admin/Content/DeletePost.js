@@ -95,7 +95,7 @@ class DeletePost extends Component {
                   </div>
                   <div className="form-group">
                     <div className="col-md-12">
-                      <button className="btn btn-primary" type="submit"><i className="fa fa-trash"></i> Delete</button>
+                      <button className="btn btn-danger" type="submit"><i className="fa fa-trash"></i> Delete</button>
                     </div>
                   </div>
                   <div className="form-group">
