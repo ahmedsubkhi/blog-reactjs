@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Loading from '../Loading';
+import Loading from 'Layout/Component/Loading';
 
 /*
  * This component use to show all post get from API
@@ -28,13 +28,19 @@ class Posts extends Component {
     }
   }
 
+  dateHuman(strDate){
+    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    var date = new Date(strDate);
+    return date.toLocaleString('en-GB', options);
+  }
+
   render(){
     if(this.state.ready){
       const postsContent = this.state.posts.map((post, i) =>
         <div className="container-post-blog" key={i}>
           <div className="container">
             <h5 className="title-post-blog"><strong><a href={'/posts/'+post.id_post}>{post.title}</a></strong></h5>
-            <small className="user-post-blog">Posted by: {post.user.username}</small>
+            <small className="user-post-blog">Posted by: {post.user.username} <br /> At: {this.dateHuman(post.created_at)}</small>
             <div className="body-post-blog">
               {post.body}
             </div>

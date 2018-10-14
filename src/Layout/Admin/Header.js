@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Myaccount from 'Layout/Home/Header/Myaccount';
+import Myaccount from 'Layout/Admin/Header/Myaccount';
 
 class Header extends Component {
 
@@ -64,10 +64,7 @@ class Header extends Component {
                 <a className="nav-link" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/contact">Contact</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/aboutme">About Me</a>
+                <a className="nav-link" href="/admin/posts">Posts</a>
               </li>
               <li className="nav-item dropdown">
                 <Myaccount myaccount={this.state.myAccount} />

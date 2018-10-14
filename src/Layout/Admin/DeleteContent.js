@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-import Post from 'Layout/Home/Content/Post';
+import DeletePost from 'Layout/Admin/Content/DeletePost';
 import Loading from 'Layout/Component/Loading';
 
-
-class SingleContent extends Component {
+class DeleteContent extends Component {
 
   constructor(props){
     super(props);
@@ -20,7 +19,6 @@ class SingleContent extends Component {
 
     this.getApiPosts()
     .then((res) => {
-        console.log(res);
         if(res){
           this.setState({
             posts: res,
@@ -53,7 +51,7 @@ class SingleContent extends Component {
 
       return (
         <div className="content-blog">
-          <Post posts={postsData} />
+          <DeletePost posts={postsData} />
         </div>
       );
     } else {
@@ -68,6 +66,7 @@ class SingleContent extends Component {
       }
     }
   }
+
 }
 
-export default SingleContent;
+export default DeleteContent;

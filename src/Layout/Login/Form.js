@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Form extends Component {
 
   constructor(){
     super();
+
     this.API_URL = process.env.REACT_APP_API_URL;
+
     this.CONFIG_SESSION_NAME = process.env.REACT_APP_CONFIG_SESSION_NAME;
+
     this.state = {
-      posts: [],
-      ready: false,
-      message: ""
+      message: "",
+      redirect: false
     }
   }
 
@@ -35,7 +38,7 @@ class Form extends Component {
     this.getApiAuthLogin(data)
     .then((res) => {
         localStorage.setItem(this.CONFIG_SESSION_NAME, JSON.stringify(res));
-        window.location.href = "/";
+        this.setState({ redirect: true });
       }
     )
     .catch(err =>
@@ -43,11 +46,22 @@ class Form extends Component {
     );
   }
 
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+
   render(){
     return (
       <div className="form-login">
+        {this.renderRedirect()}
         <form className="form-horizontal" onSubmit={ this.doLogin.bind(this) }>
           <div className="col-md-6 offset-md-3">
+            <div className="form-group">
+              <h5 className="col-md-12 text-center">Login here !</h5>
+              <hr />
+            </div>
             <div className="form-group">
               <label className="control-label col-md-12">Email</label>
               <div className="col-md-12">
@@ -63,6 +77,11 @@ class Form extends Component {
             <div className="form-group">
               <div className="col-md-12">
                 <button className="btn btn-primary" type="submit"><i className="fa fa-sign-in"></i> Login</button>
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-md-12">
+                <span>Or <a href="/">Go to Home</a></span>
               </div>
             </div>
             <div className="form-group">

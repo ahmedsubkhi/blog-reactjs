@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import LatestPosts from './Navright/LatestPosts';
-import Postyear from './Navright/Postyear';
-import Loading from './Loading';
+import LatestPosts from 'Layout/Home/Navright/LatestPosts';
+import Postyear from 'Layout/Home/Navright/Postyear';
+import Loading from 'Layout/Component/Loading';
 
 class Navright extends Component {
 

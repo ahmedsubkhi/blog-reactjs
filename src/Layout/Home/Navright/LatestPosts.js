@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Loading from '../Loading';
+import Loading from 'Layout/Component/Loading';
 
 /*
  * This component use to show all post get from API

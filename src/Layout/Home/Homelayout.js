@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Header from './Header';
-import Content from './Content';
-import Contact from './Contact';
-import AboutMe from './AboutMe';
-import SingleContent from './SingleContent';
-import Navright from './Navright';
+import Header from 'Layout/Home/Header';
+import Content from 'Layout/Home/Content';
+import Contact from 'Layout/Home/Contact';
+import AboutMe from 'Layout/Home/AboutMe';
+import SingleContent from 'Layout/Home/SingleContent';
+import Navright from 'Layout/Home/Navright';
 
 
 class Homelayout extends Component {
@@ -27,9 +27,10 @@ class Homelayout extends Component {
               {/* Contains content of article or news */}
               <Switch>
                 <Route exact path="/" component={Content} />
+                <Route exact path="/posts" component={Content} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/aboutme" component={AboutMe} />
-                <Route path="/posts/:number" render={(props) => <SingleContent {...props} />} />
+                <Route path="/posts/:id" render={(props) => <SingleContent {...props} />} />
                 <Route render={() => { return ( <h3>Not Found</h3> ); } } />
               </Switch>
             </div>

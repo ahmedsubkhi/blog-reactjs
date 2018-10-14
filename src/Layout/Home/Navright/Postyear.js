@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Loading from '../Loading';
-import PostByMonth from './Postyear/PostByMonth';
+import Loading from 'Layout/Component/Loading';
+import PostByMonth from 'Layout/Home/Navright/Postyear/PostByMonth';
 
 class Postyear extends Component {
 

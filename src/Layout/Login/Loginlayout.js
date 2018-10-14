@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Form from './Form';
+import Form from 'Layout/Login/Form';
 
 
 class Loginlayout extends Component {

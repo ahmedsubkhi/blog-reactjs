@@ -12,7 +12,6 @@ body {
 
 /* Blog header */
 .header-blog {
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 .header-blog .nav {
@@ -21,6 +20,9 @@ body {
 }
 .header-blog .nav-link {
   color: #000;
+}
+.header-blog .nav-link {
+  color: #000 !important;
 }
 
 /* Blog post */
