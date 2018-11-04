@@ -52,7 +52,7 @@ class Header extends Component {
   render(){
     return (
       <div className="header-blog">
-        <nav className="navbar navbar-expand-md navbar-light bg-white">
+        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
           <h1 className="blog-brand d-block d-sm-none"><a className="navbar-brand" href="/"><i className="fa fa-connectdevelop"></i> Subkhi Blog</a></h1>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
