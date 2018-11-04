@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'jquery';
 import 'bootstrap';
 
-import 'assets/style.css';
+import 'assets/style-dark.css';
 
 import Homelayout from 'Layout/Home/Homelayout';
 import Loginlayout from 'Layout/Login/Loginlayout';
