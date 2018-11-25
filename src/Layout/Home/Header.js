@@ -69,9 +69,7 @@ class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link" href="/aboutme">About Me</a>
               </li>
-              <li className="nav-item dropdown">
-                <Myaccount myaccount={this.state.myAccount} />
-              </li>
+              <Myaccount myaccount={this.state.myAccount} />
             </ul>
           </div>
         </nav>
