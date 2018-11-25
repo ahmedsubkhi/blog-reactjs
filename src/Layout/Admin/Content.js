@@ -15,7 +15,7 @@ class Content extends Component {
 
     this.state = {
       posts: [],
-      ready: false
+      ready: 0
     }
   }
 
@@ -24,11 +24,14 @@ class Content extends Component {
     .then((res) => {
         this.setState({
           posts: res,
-          ready: true
+          ready: 1
         });
       }
     )
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      this.setState({ ready: 2 });
+    });
   }
 
   getApiPosts = async () => {
@@ -47,7 +50,7 @@ class Content extends Component {
   }
 
   render(){
-    if(this.state.ready){
+    if(this.state.ready == 1){
       const postsData = this.state.posts;
 
       return (
@@ -55,9 +58,15 @@ class Content extends Component {
           <Posts posts={postsData} />
         </div>
       );
+    } else if(this.state.ready == 2) {
+      return (
+        <div className="content-blog">
+          <h5>Not allowed group</h5>
+        </div>
+      )
     } else {
       return (
-        <Loading />
+        <div></div>
       );
     }
   }

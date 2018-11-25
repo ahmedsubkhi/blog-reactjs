@@ -46,6 +46,8 @@ class Header extends Component {
 
     if (response.status !== 200) throw Error(result.message);
 
+    if (!result) throw Error('Return empty result');
+
     return result;
   }
 
