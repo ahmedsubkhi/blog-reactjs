@@ -28,6 +28,7 @@ class Header extends Component {
             myAccount: res,
             ready: true
           });
+          console.log(res);
         }
       )
       .catch(err => console.log(err));
@@ -68,7 +69,7 @@ class Header extends Component {
                   <li className="nav-item">
                     <a className="nav-link" href="/">Home</a>
                   </li>
-                  {me.group.name == 'SUPERUSER' &&
+                  {me.id_group == '5bf8cbe6b6f7b9e024035173' &&
                   <li className="nav-item">
                     <a className="nav-link" href="/admin/posts">Posts</a>
                   </li>

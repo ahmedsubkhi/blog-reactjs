@@ -81,7 +81,9 @@ class NewComment extends Component {
           message: ""
         });
         body.value = "";
-        this.props.handleForUpdate(res.newdata);
+        if(res.newdata){
+          this.props.handleForUpdate(res.newdata);
+        }
       }
     )
     .catch(err =>

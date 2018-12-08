@@ -16,7 +16,7 @@ class Myaccount extends Component {
           <div className="my-account">
             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">Logged in as ({me.username})</a>
             <div className="dropdown-menu">
-              {me.group.name == 'SUPERUSER' &&
+              {me.id_group == '5bf8cbe6b6f7b9e024035173' &&
               <a className="dropdown-item" href="/admin/posts">Admin</a>
               }
               <a className="dropdown-item" href="/logout">Logout</a>
