@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 class NewComment extends Component {
 
@@ -9,12 +10,15 @@ class NewComment extends Component {
     this.API_URL = process.env.REACT_APP_API_URL;
 
     this.CONFIG_SESSION_NAME = process.env.REACT_APP_CONFIG_SESSION_NAME;
+    this.RECAPTCHA_SITE_KEY = process.env.REACT_APP_GOOGLE_RECAPTCHA_SITE_KEY;
 
     this.currentAuth = JSON.parse(localStorage.getItem(this.CONFIG_SESSION_NAME));
 
     this.state = {
       myAccount: [],
       ready: false,
+      commentBtnDisabled: true,
+      theCaptcha:false,
       message: ""
     }
 
@@ -33,6 +37,10 @@ class NewComment extends Component {
       )
       .catch(err => console.log(err));
     }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    nextState.commentBtnDisabled = !(nextState.theCaptcha);
   }
 
   postApiPostAddComment = async (data) => {
@@ -83,12 +91,24 @@ class NewComment extends Component {
         body.value = "";
         if(res.newdata){
           this.props.handleForUpdate(res.newdata);
+
+          this.setState({
+            commentBtnDisabled: true,
+            theCaptcha:false
+          });
+
+          var recaptcha = this.refs.recaptchaRef;
+          recaptcha.reset();
         }
       }
     )
     .catch(err =>
       this.setState({ message: err })
     );
+  }
+
+  captchaCallback = () => {
+    this.setState({ theCaptcha: true });
   }
 
   render(){
@@ -104,12 +124,21 @@ class NewComment extends Component {
                   <label className="control-label col-md-12">New Comment :</label>
                   <div className="col-md-12">
                     <input type="hidden" name="_id" id="_id" defaultValue={ _id } />
-                    <textarea className="form-control" id="body" name="body" ref="body"></textarea>
+                    <textarea className="form-control" id="body" name="body" ref="body" required="required"></textarea>
                   </div>
                 </div>
                 <div className="form-group">
                   <div className="col-md-12">
-                    <button className="btn btn-success" type="submit"><i className="fa fa-comments"></i> Post Comment</button>
+                    <ReCAPTCHA
+                      ref="recaptchaRef"
+                      sitekey={this.RECAPTCHA_SITE_KEY}
+                      onChange={this.captchaCallback}
+                    />
+                  </div>
+                </div>
+                <div className="form-group">
+                  <div className="col-md-12">
+                    <button className="btn btn-success" type="submit" disabled={ this.state.commentBtnDisabled }><i className="fa fa-comments"></i> Post Comment</button>
                   </div>
                 </div>
                 <div className="form-group">

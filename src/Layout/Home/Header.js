@@ -27,7 +27,6 @@ class Header extends Component {
             myAccount: res,
             ready: true
           });
-          console.log(res);
         }
       )
       .catch(err => console.log(err));
