@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Myaccount from 'Layout/Admin/Header/Myaccount';
+import Loading from 'Layout/Component/Loading';
 
 class Header extends Component {
 
@@ -50,30 +51,43 @@ class Header extends Component {
   }
 
   render(){
-    return (
-      <div className="header-blog">
-        <nav className="navbar navbar-expand-md navbar-light bg-white">
-          <h1 className="blog-brand d-block d-sm-none"><a className="navbar-brand" href="/"><i className="fa fa-connectdevelop"></i> Subkhi Blog</a></h1>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+    if(this.state.ready){
+      if(this.state.myAccount){
+        const me = this.state.myAccount;
 
-          <div className="collapse navbar-collapse justify-content-center" id="navbarContent">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/admin/posts">Posts</a>
-              </li>
-              <li className="nav-item dropdown">
-                <Myaccount myaccount={this.state.myAccount} />
-              </li>
-            </ul>
+        return (
+          <div className="header-blog">
+            <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+              <h1 className="blog-brand d-block d-sm-none"><a className="navbar-brand" href="/"><i className="fa fa-connectdevelop"></i> Subkhi Blog</a></h1>
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+
+              <div className="collapse navbar-collapse justify-content-center" id="navbarContent">
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a className="nav-link" href="/">Home</a>
+                  </li>
+                  {me.id_group == '5bf8cbe6b6f7b9e024035173' &&
+                  <li className="nav-item">
+                    <a className="nav-link" href="/admin/posts">Posts</a>
+                  </li>
+                  }
+                  <li className="nav-item dropdown">
+                    <Myaccount myaccount={this.state.myAccount} />
+                  </li>
+                </ul>
+              </div>
+            </nav>
           </div>
-        </nav>
-      </div>
-    );
+        );
+      }
+    } else {
+      return (
+        <div></div>
+      )
+    }
+
   }
 }
 

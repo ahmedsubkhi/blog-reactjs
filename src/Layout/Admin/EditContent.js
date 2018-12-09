@@ -37,7 +37,7 @@ class EditContent extends Component {
 
   getApiPosts = async () => {
     const id_post = this.props.match.params.id;
-    const response = await fetch(this.API_URL + '/posts/' + id_post);
+    const response = await fetch(this.API_URL + '/posts/admin/' + id_post);
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);

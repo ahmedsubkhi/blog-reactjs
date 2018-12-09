@@ -10,6 +10,7 @@ import 'assets/style-dark.css';
 
 import Homelayout from 'Layout/Home/Homelayout';
 import Loginlayout from 'Layout/Login/Loginlayout';
+import Registerlayout from 'Layout/Register/Registerlayout';
 import Logout from 'Page/Logout';
 import AdminPosts from 'Page/Admin/Posts';
 
@@ -23,6 +24,7 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route path="/login" component={Loginlayout} />
+              <Route path="/register" component={Registerlayout} />
               <Route path="/logout" component={Logout} />
               <Route path="/admin" component={AdminPosts} />
               <Route path="/contact" component={Homelayout} />
